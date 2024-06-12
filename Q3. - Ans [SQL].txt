@@ -1,0 +1,20 @@
+Q. Which query would you write to find every duplicate in a table? You should
+mention possible methods. [1 Mark]
+
+Ans.
+
+I can find duplicate values in a table using GROUP By and Having.
+ex:
+Suppose there is a table employees which stores employees details like their name and email so I can find the common persons with similar name and emails by using following query:
+
+  SELECT name, email, COUNT(*) FROM employees GROUP BY name, email HAVING COUNT(*) > 1;
+
+
+I can also find duplicate entries by SELF JOIN.
+
+ex:
+
+SELECT a.id, a.name, a.email FROM employees a JOIN employees b ON a.name = b.name AND a.email = b.email WHERE a.id <> b.id;
+
+
+Both above SQL queries will return the duplicate records.

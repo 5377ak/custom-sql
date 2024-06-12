@@ -1,0 +1,38 @@
+Q 4.1 / Ans:
+
+To display the name of clothing items, their color, and the last name and first name of the customers who bought this apparel in their favorite color, you need to join multiple tables.
+
+SELECT
+ c.name AS clothes,
+ col.name AS color,
+ cust.last_name,
+ cust.first_name
+FROM
+ clothing_order co
+JOIN
+ customer cust ON co.customer_id = cust.id
+JOIN
+ clothing c ON co.clothing_id = c.id
+JOIN
+ color col ON c.color_id = col.id
+WHERE
+ c.color_id = cust.favorite_color_id
+ORDER BY
+ col.name ASC;
+
+
+-------------------------------------------------------------------------------------
+
+Q 4.2 / Ans:
+
+SELECT
+ main_distance,
+ COUNT(CASE WHEN age < 20 THEN 1 END) AS under_20,
+ COUNT(CASE WHEN age BETWEEN 20 AND 29 THEN 1 END) AS age_20_29,
+ COUNT(CASE WHEN age BETWEEN 30 AND 39 THEN 1 END) AS age_30_39,
+ COUNT(CASE WHEN age BETWEEN 40 AND 49 THEN 1 END) AS age_40_49,
+ COUNT(CASE WHEN age >= 50 THEN 1 END) AS over_50
+FROM
+ runner
+GROUP BY
+ main_distance;
